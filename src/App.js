@@ -1,5 +1,4 @@
-import 'assets/style/App.scss';
-
+import React, { useState } from 'react';
 import {
     Routes,
     Route,
@@ -8,15 +7,18 @@ import {
 import Index from 'pages/Index'
 import Details from 'pages/Details'
 
+import 'assets/style/App.scss';
+
 function App() {
-    console.log('App RENDER');
+    const [moviesList, setMoviesList] = useState([]);
+
     return (
         <>
             <header></header>
             <main>
                 <Routes>
-                    <Route exact path="/" element={<Index />} />
-                    <Route path="/details/:movieIdentifier" element={<Details />} />
+                    <Route exact path="/" element={<Index moviesList={moviesList}  setMoviesList={(list) => {setMoviesList(list)}} />} />
+                    <Route path="/details/:id" element={<Details moviesList={moviesList} />} />
                 </Routes>
             </main>
             <footer></footer>

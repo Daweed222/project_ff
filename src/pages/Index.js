@@ -1,11 +1,43 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
+import CategorySelector from 'components/CategorySelector';
 import MoviesList from 'components/MoviesList';
 
-const Index = () => {
-    const [moviesList, setMoviesList] = useState([]);
+const Index = (props) => {
+    const { moviesList, setMoviesList } = props;
+
     const [query, setQuery] = useState('');
-    const [isLodaing, setIsLoading] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [myList, setMyList] = useState([]);
+
+    const filterMovies = (movies = [], genre = '') => {
+        const filteredMovies = [];
+
+        if (genre === 'All' || genre === '') {
+            setMoviesList(movies);
+        } else {
+            if (movies.length > 0) {
+                movies.forEach(movie => {
+                    if (movie.genres?.genres?.length > 0) {
+                        let l = false;
+                        let index = 0;
+                        const genres = movie.genres.genres;
+        
+                        while (!l && index < genres.length) {
+                            if(genres[index].text === genre) {
+                                l = true;
+                            } else { index++; }
+                        }
+        
+                        if (l) {
+                            filteredMovies.push(movie);
+                        } 
+                    }
+                })
+            }
+            setMoviesList(filteredMovies);
+        }
+    };
 
      const fetchMovies = useCallback(() => {
         if (query.length > 0) {
@@ -17,15 +49,15 @@ const Index = () => {
                 }
             };
            
-            fetch(`https://moviesdatabase.p.rapidapi.com/titles/search/title/${encodeURIComponent(query)}?info=mini_info&limit=12&page=1&titleType=movie`, options)
+            fetch(`https://moviesdatabase.p.rapidapi.com/titles/search/title/${encodeURIComponent(query)}?info=base_info&limit=12&page=1&titleType=movie`, options)
                 .then(response => response.json())
                 .then((response) => {
-                    setMoviesList(response.results);
+                    filterMovies(response.results, selectedCategory);
                     console.log(response)
                 })
                 .catch(err => console.error(err));
         }
-    }, [query]);
+    }, [query, selectedCategory]);
 
     useEffect(() => {
         const timeoutIdentifier = setTimeout(() => {
@@ -36,17 +68,21 @@ const Index = () => {
         }
     }, [fetchMovies])
 
-
     const searchInputChangeHandler = (e) => {
-        console.log(e.target.value.length);
         if (e.target.value.length === 0) { setMoviesList([]); }
         setQuery(e.target.value);
     };
 
+    const categoryChangeHandler = (selectedCategory) => {
+        setSelectedCategory(selectedCategory);
+        filterMovies(moviesList, selectedCategory);
+    };
+
     const clearSearch = () => {
         setQuery('');
-        setMoviesList([])
-    }
+        setMoviesList([]);
+    };
+
 
     console.log('Index RENDER');
 
@@ -60,10 +96,13 @@ const Index = () => {
                         <span></span>
                     </div>
                 </div>
+                <div className='category-selector-container'>
+                    <CategorySelector selectedCategory={selectedCategory} changeCategory={(c) => {categoryChangeHandler(c); }} />
+                </div>
             </section>
-            <MoviesList moviesList={moviesList} />
+            {moviesList.length > 0 ? <MoviesList moviesList={moviesList} /> : <p style={{textAlign: 'center'}}>No movies matched the search parameters :(</p>}
         </>
     );
 }
 
-export default Index;
+export default React.memo(Index);

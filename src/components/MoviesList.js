@@ -1,10 +1,15 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'
 
 import DefaultImage from 'assets/image/default.jpg'
 
 const MoviesList = (props) => {
-    const { moviesList } = props;
+    const { 
+        moviesList,
+    } = props;
+
     console.log('MoviesList RENDER');
+
     return (
         <section id="movies-list">
             <div className='container'>
@@ -13,9 +18,9 @@ const MoviesList = (props) => {
                     <li key={index}>
                         <div>
                             <div className='image-container'>
-                                <img src={movie?.primaryImage?.url ? movie?.primaryImage?.url : DefaultImage} />
+                                <img src={movie?.primaryImage?.url ? movie?.primaryImage?.url : DefaultImage} alt={movie?.titleText?.text} />
                             </div>
-                            <h1>{movie?.titleText?.text}</h1>
+                            <NavLink to={`details/${movie.id}`} >{movie?.titleText?.text}</NavLink>
                         </div>
                     </li>
                 )) }
@@ -25,4 +30,4 @@ const MoviesList = (props) => {
     );
 };
 
-export default MoviesList;
+export default  React.memo(MoviesList);
