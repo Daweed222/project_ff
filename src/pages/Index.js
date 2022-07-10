@@ -8,7 +8,7 @@ const Index = (props) => {
 
     const [query, setQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
-    const [myList, setMyList] = useState([]);
+    // const [myList, setMyList] = useState([]);
 
     const filterMovies = (movies = [], genre = '') => {
         const filteredMovies = [];

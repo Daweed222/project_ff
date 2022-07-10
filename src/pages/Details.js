@@ -12,7 +12,13 @@ const Details = (props) => {
 
     return (
        <section id="movie-detail">
-            <NavLink to="/">Back</NavLink>
+            <NavLink to="/" style={{
+                display: 'block',
+                textDecoration: 'none',
+                marginBottom: '15px',
+                fontWeight: '500',
+                fontSize: '18px',
+            }} >Back</NavLink>
             <div className='detail-container'>
                 <div className='image-container'>
                     <img src={selectedMovie.primaryImage.url} />

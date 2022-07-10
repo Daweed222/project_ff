@@ -1,5 +1,8 @@
 @import  './_variables.scss';
 @import  './UI/_input.scss';
+@import  './UI/_dropdown.scss';
+@import './MovieDetail.scss';
+@import './MoviesList.scss';
 
 *, html {
   margin: 0;
@@ -20,138 +23,6 @@
     justify-content: center;
 }
 
-#movies-list {
-    .container {
-        display: block;
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 0 0 50px;
-
-        ul {
-            display: grid;
-            grid-gap: var(--grid-column-gap);
-            grid-template-columns: var(--grid-column-width) var(--grid-column-width) var(--grid-column-width) var(--grid-column-width);
-
-            li {
-                list-style-type: none;
-                cursor: pointer;
-                
-                .image-container {
-                    min-height: 420px;
-                    display: flex;
-                    align-items: flex-start;
-                    justify-content: center;
-
-                    img {
-                        max-width: 100%;
-                        max-height: 420px;
-                        border-radius: 15px;
-                        transition: .25s ease-in-out;
-                    }
-                }
-
-                a {
-                    display: block;
-                    margin: 15px 0;
-                    font-size: 20px;
-                    text-decoration: none;
-                    font-weight: 400;
-                }
-
-                &:hover {
-
-                    img {
-                        transform: scale(1.05);
-                    }
-                }
-            }
-        }
-    }
-}
-
 .category-selector-container {
     padding: 0 25px;
-}
-
-.dropdown-container {
-    position: relative;
-    cursor: pointer;
-
-    .selected-value {
-        padding: 10px 20px;
-        border: 2px solid #b3b3b3;
-        border-radius: 25px;
-        font-size: 18px;
-        background-color: #1a1a1a;
-        color: #b3b3b3;
-    }
-
-    .values-container {
-        position: absolute;
-        display: none;
-        padding: 10px 10px 10px 20px;
-        border: 2px solid #b3b3b3;
-        border-radius: 25px;
-        font-size: 18px;
-        background-color: #1a1a1a;
-        color: #b3b3b3;
-        margin-top: 10px;
-        z-index: 3;
-
-        ul {
-            overflow-y: scroll;
-            max-height: 250px;
-
-            li {
-                list-style-type: none;
-                padding: 5px 0;
-                transition: .25s ease-in-out;
-                padding-right: 10px;
-    
-                &:hover {
-                    color: #fff;
-                }
-            }
-        }
-    }
-
-    &.active {
-
-        .values-container{
-            display: block;
-        }
-    }
-
-    ::-webkit-scrollbar {
-        width: 5px;
-    }
-  
-    ::-webkit-scrollbar-track {
-        background: #1a1a1a;
-    }
-  
-    ::-webkit-scrollbar-thumb {
-        background: #b3b3b3;
-        border-radius: 5px;
-    }
-}
-
-#movie-detail {
-    display: block;
-    margin: 0 auto;
-    padding: 50px 0;
-    max-width: 1280px;
-
-    .detail-container {
-        display: grid;
-        grid-template-columns: 25% 75%;
-
-        .image-container {
-            max-width: 300px;
-
-            img {
-                max-width: 100%;
-            }
-        }
-    }
 }
