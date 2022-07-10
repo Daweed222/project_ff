@@ -16,12 +16,14 @@ const MoviesList = (props) => {
                 <ul>
                 { moviesList?.map((movie, index) => (
                     <li key={index}>
-                        <div>
-                            <div className='image-container'>
-                                <img src={movie?.primaryImage?.url ? movie?.primaryImage?.url : DefaultImage} alt={movie?.titleText?.text} />
+                        <NavLink to={`details/${movie.id}`} >
+                            <div>
+                                <div className='image-container'>
+                                    <img src={movie?.primaryImage?.url ? movie?.primaryImage?.url : DefaultImage} alt={movie?.titleText?.text} />
+                                </div>
+                                <h1>{movie?.titleText?.text}</h1>
                             </div>
-                            <NavLink to={`details/${movie.id}`} >{movie?.titleText?.text}</NavLink>
-                        </div>
+                        </NavLink>
                     </li>
                 )) }
                 </ul>
