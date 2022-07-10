@@ -6,6 +6,8 @@ const Details = (props) => {
     const { id } = useParams();
     let selectedMovie = {}
 
+    console.log(moviesList);
+
     if (moviesList?.length > 0) {
         selectedMovie = moviesList.filter(movie => movie.id === id)[0];
     }
@@ -21,12 +23,12 @@ const Details = (props) => {
             }} >Back</NavLink>
             <div className='detail-container'>
                 <div className='image-container'>
-                    <img src={selectedMovie.primaryImage.url} />
+                    <img src={selectedMovie.primaryImage?.url} />
                 </div>
                 <div className='information-container'>
-                    <h1>{selectedMovie.titleText.text}</h1>
-                    <h2>{selectedMovie.releaseYear.year}</h2>
-                    <p>{selectedMovie.plot.plotText.plainText}</p>
+                    <h1>{selectedMovie.titleText?.text}</h1>
+                    <h2>{selectedMovie.releaseYear?.year}</h2>
+                    <p>{selectedMovie.plot?.plotText?.plainText}</p>
                 </div>
             </div>
        </section> 
