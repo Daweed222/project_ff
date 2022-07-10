@@ -1,0 +1,53 @@
+.input-container {
+    position: relative;
+    width: max-content;
+
+    label {
+        position:absolute;
+        left: 0;
+
+    }
+
+    input[type="text"] {
+        padding: 10px 20px;
+        border: 2px solid #b3b3b3;
+        border-radius: 25px;
+        font-size: 18px;
+        background-color: #1a1a1a;
+        color: #b3b3b3;
+
+        &:focus {
+            outline: none;
+            border: 2px solid #b3b3b3;
+        }
+    }
+
+    .btn.input-clear {
+        position: absolute;
+        top: 18px;
+        right: 15px;
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+        z-index: 2;
+
+        span {
+            background-color: #b3b3b3;
+            width: 2px;
+            height: 15px;
+            display:block;
+            position: absolute;
+            right: 7px;
+            z-index: 1;
+
+            &:first-child {
+                transform: rotate(45deg);
+            }
+
+            &:last-child {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+}
+

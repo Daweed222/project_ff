@@ -1,0 +1,9 @@
+:root {
+    --primary--font-color: #818181;
+    --secondary--font-color: #acacac;
+
+    --root-backroud-color: #292929;
+
+    --grid-column-gap: 25px;
+    --grid-column-width: calc(25% - var(--grid-column-gap));
+}

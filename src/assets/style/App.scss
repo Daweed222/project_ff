@@ -1,0 +1,67 @@
+@import  './_variables.scss';
+@import  './UI/_input.scss';
+
+*, html {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  color: var(--primary--font-color);
+  font-family: 'Poppins', sans-serif;
+}
+
+#root {
+    min-height: 100vh;
+    background-color: var(--root-backroud-color);
+}
+
+#search-field {
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+#movies-list {
+    .container {
+        display: block;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 0 50px;
+
+        ul {
+            display: grid;
+            grid-gap: var(--grid-column-gap);
+            grid-template-columns: var(--grid-column-width) var(--grid-column-width) var(--grid-column-width) var(--grid-column-width);
+
+            li {
+                list-style-type: none;
+                cursor: pointer;
+                
+                .image-container {
+                    min-height: 420px;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: center;
+
+                    img {
+                        max-width: 100%;
+                        max-height: 420px;
+                        border-radius: 15px;
+                        transition: .25s ease-in-out;
+                    }
+                }
+
+                h1 {
+                    margin: 10px 0;
+                    font-size: 20px;
+                }
+
+                &:hover {
+
+                    img {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+        }
+    }
+}
